@@ -88,7 +88,8 @@ def warp_image(img, M):
     shape = img.shape[0:2][::-1]
     return cv2.warpPerspective(img, M, shape, flags=cv2.INTER_LINEAR)
 ``` 
-The `warp_image()` function takes as inputs an image (`img`), as well as source (`src`) and destination (`dst`) points.  I chose the hardcode the source and destination points by manually selecting them on image.
+The `warp_image()` function takes as inputs an image (`img`), as well perspective transformation matrix (`M`), thus it can be used for direct and reverse transformation by changing `M` parameter.
+I chose to hardcode the source and destination points by manually selecting them on image.
 Also, I used one a trick here. I intentionally used 310 for Y coordinate for top destination points.
 That allowd me unwrap image far more further away compare to doing it by hand. 
 
@@ -107,7 +108,7 @@ I verified that my perspective transform was working as expected by drawing the 
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
-I used approach described by course matterials in order to identify lane line pixels.
+I used approach described by course materials in order to identify lane line pixels.
 Histogram based approach is used to identify pixels from scratch and it is implemented in find_lane_lines(binary_warped, nwindows=9, margin=100, minpix=50, debug=False) function.
 Here is an example of lane lines detected by find_lane_lines function:
 ![alt text][image5]
