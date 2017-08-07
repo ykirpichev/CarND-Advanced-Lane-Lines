@@ -15,10 +15,15 @@ The goals / steps of this project are the following:
 
 [image1]: ./output_images/undistort_output.png "Undistorted"
 [image2]: ./output_images/straight_lines2_undistorted.jpg "Road Transformed"
-[image3]: ./examples/binary_combo_example.jpg "Binary Example"
-[image4]: ./examples/warped_straight_lines.jpg "Warp Example"
-[image5]: ./examples/color_fit_lines.jpg "Fit Visual"
-[image6]: ./examples/example_output.jpg "Output"
+[image3]: ./output_images/test1.jpg "Test1 image"
+[image4]: ./output_images/test1_pipelined.jpg "Thresholded binary image"
+[image5]: ./output_images/straight_lines2_with_region.jpg "Straight lines image"
+[image6]: ./output_images/straight_lines2_with_region_warped.jpg "Straight lines warped image"
+[image7]: ./output_images/test5_undistorted.jpg "Test5 image"
+[image8]: ./output_images/test5_undistorted_binary.jpg "Test5 binary image"
+[image9]: ./output_images/test5_undistorted_lines_detected.jpg "Test5 lines detected image"
+[image10]: ./output_images/test5_undistorted_lines_detected_fast.jpg "Test5 fast lines detected image"
+[image11]: ./output_images/test5_final.jpg "Test5 final image"
 [video1]: ./test_videos_output/project_video.mp4 "Video"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
@@ -69,8 +74,10 @@ I used a combination of color and gradient thresholds to generate a binary image
     binary[(binary == 1) | (x_s_thresh ==1) | (x_v_thresh ==1)] = 1  
  ```
 Here's an example of my output for this step.
-
+Test image:
 ![alt text][image3]
+Thresholded binary image:
+![alt text][image4]
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 
@@ -104,19 +111,19 @@ This resulted in the following source and destination points:
 
 I verified that my perspective transform was working as expected by drawing the `src` and `dst` points onto a test image and its warped counterpart to verify that the lines appear parallel in the warped image.
 
-![alt text][image4]
+![alt text][image5] ![alt text][image6]
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
 I used approach described by course materials in order to identify lane line pixels.
 Histogram based approach is used to identify pixels from scratch and it is implemented in find_lane_lines(binary_warped, nwindows=9, margin=100, minpix=50, debug=False) function.
 Here is an example of lane lines detected by find_lane_lines function:
-![alt text][image5]
+![alt text][image7]![alt text][image8]![alt text][image9]
 
 And, when previous lines are known, def find_lane_lines_fast(binary_warped, left_fit_prev, right_fit_prev, debug=False) is used for faster lane lines detection.
 
 Here is an example of lane lines detected by find_lane_lines_fast function:
-![alt text][image5]
+![alt text][image10]
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
@@ -138,7 +145,7 @@ Lane line position is calculted in draw_lanes_info function by the following pea
 
 I implemented this step in the function `draw_lanes_info`.  Here is an example of my result on a test image:
 
-![alt text][image6]
+![alt text][image11]
 
 ---
 
