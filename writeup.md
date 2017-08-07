@@ -116,25 +116,25 @@ I verified that my perspective transform was working as expected by drawing the 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
 I used approach described by course materials in order to identify lane line pixels.
-Histogram based approach is used to identify pixels from scratch and it is implemented in find_lane_lines(binary_warped, nwindows=9, margin=100, minpix=50, debug=False) function.
-Here is an example of lane lines detected by find_lane_lines function:
+Histogram based approach is used to identify pixels from scratch and it is implemented in `find_lane_lines(binary_warped, nwindows=9, margin=100, minpix=50, debug=False)` function.
+Here is an example of lane lines detected by `find_lane_lines` function:
 ![alt text][image7]![alt text][image8]![alt text][image9]
 
-And, when previous lines are known, def find_lane_lines_fast(binary_warped, left_fit_prev, right_fit_prev, debug=False) is used for faster lane lines detection.
+And, when previous lines are known, `find_lane_lines_fast(binary_warped, left_fit_prev, right_fit_prev, debug=False)` is used for faster lane lines detection.
 
-Here is an example of lane lines detected by find_lane_lines_fast function:
+Here is an example of lane lines detected by `find_lane_lines_fast` function:
 ![alt text][image10]
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-I implemented def lane_curvature(fit_line, y_eval) which computes line curvature.
+I implemented `lane_curvature(fit_line, y_eval)` which computes line curvature.
 For lane lines curvature I'm using minimum value of left and right curvature:
 ```python
 curvature = min(lane_curvature(left_fit, binary_warped.shape[0]),
                 lane_curvature(right_fit, binary_warped.shape[0]))
 ```
 
-Lane line position is calculted in draw_lanes_info function by the following peace of code:
+Lane line position is calculted in `draw_lanes_info` function by the following peace of code:
 ```python
     vehicle_positioin = (left_fitx[-1] + right_fitx[-1]) / 2.0
     vehicle_offset = vehicle_positioin - image.shape[1] / 2.0
