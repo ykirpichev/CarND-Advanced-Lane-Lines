@@ -153,7 +153,7 @@ I implemented this step in the function `draw_lanes_info`.  Here is an example o
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
 
-Here's a ![link to my video result][video1]
+Here's a [link to my video result](./test_videos_output/project_video.mp4)
 
 ---
 
